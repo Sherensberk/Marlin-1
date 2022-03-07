@@ -163,7 +163,7 @@
  *
  * :[3, 4, 5, 6]
  */
-#define LINEAR_AXES 6
+#define LINEAR_AXES 3
 
 /**
  * Axis codes for additional axes:
@@ -947,7 +947,7 @@
  * Override with M201
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 3000, 3000, 3000, 3000, 3000 }
+#define DEFAULT_MAX_ACCELERATION      { 3000, 900, 3000, 3000, 3000, 3000, 3000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -1379,7 +1379,7 @@
 
 // The size of the printable area
 #define X_BED_SIZE 200
-#define Y_BED_SIZE 200
+#define Y_BED_SIZE 540
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -1754,7 +1754,7 @@
 #endif
 
 // Homing speeds (mm/min)
-#define HOMING_FEEDRATE_MM_M { (50*60), (50*60), (50*60), (50*60), (50*60), (50*60) }
+#define HOMING_FEEDRATE_MM_M { (50*60), (30*60), (50*60), (10*60), (10*60), (10*60) }
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -1831,7 +1831,7 @@
  *   M501 - Read settings from EEPROM. (i.e., Throw away unsaved changes)
  *   M502 - Revert settings to "factory" defaults. (Follow with M500 to init the EEPROM.)
  */
-//#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
+#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
 //#define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
 #define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
 #define EEPROM_BOOT_SILENT    // Keep M503 quiet and only give errors during first load
