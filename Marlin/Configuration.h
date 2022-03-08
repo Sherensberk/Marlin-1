@@ -163,7 +163,7 @@
  *
  * :[3, 4, 5, 6]
  */
-#define LINEAR_AXES 3
+#define LINEAR_AXES 6
 
 /**
  * Axis codes for additional axes:
@@ -780,9 +780,9 @@
 #define USE_XMIN_PLUG
 #define USE_YMIN_PLUG
 #define USE_ZMIN_PLUG
-#define USE_IMIN_PLUG
-#define USE_JMIN_PLUG
-#define USE_KMIN_PLUG
+#define USE_IMIN_PLUG      // UNCOMMENT TO ENABLE THIS AXIS
+#define USE_JMIN_PLUG      // UNCOMMENT TO ENABLE THIS AXIS
+#define USE_KMIN_PLUG      // UNCOMMENT TO ENABLE THIS AXIS
 //#define USE_XMAX_PLUG
 //#define USE_YMAX_PLUG
 //#define USE_ZMAX_PLUG
@@ -832,15 +832,17 @@
 #define X_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
 #define Y_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
 #define Z_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
-#define I_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
-#define J_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
-#define K_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
+
+#define I_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.   // UNCOMMENT TO ENABLE THIS AXIS
+#define I_MAX_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.   // UNCOMMENT TO ENABLE THIS AXIS
+#define J_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.   // UNCOMMENT TO ENABLE THIS AXIS
+#define J_MAX_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.   // UNCOMMENT TO ENABLE THIS AXIS
+#define K_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.   // UNCOMMENT TO ENABLE THIS AXIS
+#define K_MAX_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.   // UNCOMMENT TO ENABLE THIS AXIS
+
 #define X_MAX_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
-#define I_MAX_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
-#define J_MAX_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
-#define K_MAX_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
 #define Z_MIN_PROBE_ENDSTOP_INVERTING true // Set to true to invert the logic of the probe.
 
 /**
@@ -869,9 +871,11 @@
 //#define Z2_DRIVER_TYPE A4988
 //#define Z3_DRIVER_TYPE A4988
 //#define Z4_DRIVER_TYPE A4988
-#define I_DRIVER_TYPE  TMC5160
-#define J_DRIVER_TYPE  TMC5160
-#define K_DRIVER_TYPE  TMC5160
+
+#define I_DRIVER_TYPE  TMC5160   // UNCOMMENT TO ENABLE THIS AXIS
+#define J_DRIVER_TYPE  TMC5160   // UNCOMMENT TO ENABLE THIS AXIS
+#define K_DRIVER_TYPE  TMC5160   // UNCOMMENT TO ENABLE THIS AXIS
+
 #define E0_DRIVER_TYPE TMC5160
 //#define E1_DRIVER_TYPE A4988
 //#define E2_DRIVER_TYPE A4988
@@ -927,14 +931,62 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 80, 80, 80, 80, 80 }
 
+#define X_STEP_PER_UNIT 80
+#define X_MAX_FEEDRATE 300
+#define X_MAX_ACCELERATION 3000
+
+#define Y_STEP_PER_UNIT 80
+#define Y_MAX_FEEDRATE 300
+#define Y_MAX_ACCELERATION 900
+
+#define Z_STEP_PER_UNIT 80
+#define Z_MAX_FEEDRATE 300
+#define Z_MAX_ACCELERATION 3000
+
+#define E_STEP_PER_UNIT 80
+#define E_MAX_FEEDRATE 300
+#define E_MAX_ACCELERATION 3000
+
+#if LINEAR_AXES >= 4
+  #define I_STEP_PER_UNIT 80
+  #define I_MAX_FEEDRATE 300
+  #define I_MAX_ACCELERATION 3000
+#endif
+#if LINEAR_AXES >= 5
+  #define J_STEP_PER_UNIT 80
+  #define J_MAX_FEEDRATE 300
+  #define J_MAX_ACCELERATION 3000
+#endif
+#if LINEAR_AXES >= 6
+  #define K_STEP_PER_UNIT 80
+  #define K_MAX_FEEDRATE 300
+  #define K_MAX_ACCELERATION 3000
+#endif
+
+#if LINEAR_AXES == 3
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { X_STEP_PER_UNIT, Y_STEP_PER_UNIT, Z_STEP_PER_UNIT, E_STEP_PER_UNIT}
+  #define DEFAULT_MAX_FEEDRATE          {X_MAX_FEEDRATE, Y_MAX_FEEDRATE, Z_MAX_FEEDRATE, E_MAX_FEEDRATE}
+  #define DEFAULT_MAX_ACCELERATION          {X_MAX_ACCELERATION, Y_MAX_ACCELERATION, Z_MAX_ACCELERATION, E_MAX_ACCELERATION}
+#elif LINEAR_AXES == 4
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { X_STEP_PER_UNIT, Y_STEP_PER_UNIT, Z_STEP_PER_UNIT, I_STEP_PER_UNIT, E_STEP_PER_UNIT}
+  #define DEFAULT_MAX_FEEDRATE          { X_MAX_FEEDRATE, Y_MAX_FEEDRATE, Z_MAX_FEEDRATE, I_MAX_FEEDRATE, E_MAX_FEEDRATE}
+  #define DEFAULT_MAX_ACCELERATION          { X_MAX_ACCELERATION, Y_MAX_ACCELERATION, Z_MAX_ACCELERATION, I_MAX_ACCELERATION, E_MAX_ACCELERATION}
+#elif LINEAR_AXES == 5
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { X_STEP_PER_UNIT, Y_STEP_PER_UNIT, Z_STEP_PER_UNIT, I_STEP_PER_UNIT, J_STEP_PER_UNIT, E_STEP_PER_UNIT}
+  #define DEFAULT_MAX_FEEDRATE          { X_MAX_FEEDRATE, Y_MAX_FEEDRATE, Z_MAX_FEEDRATE, I_MAX_FEEDRATE, J_MAX_FEEDRATE, E_MAX_FEEDRATE}
+  #define DEFAULT_MAX_ACCELERATION          { X_MAX_ACCELERATION, Y_MAX_ACCELERATION, Z_MAX_ACCELERATION, I_MAX_ACCELERATION, J_MAX_ACCELERATION, E_MAX_ACCELERATION}
+#elif LINEAR_AXES == 6
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { X_STEP_PER_UNIT, Y_STEP_PER_UNIT, Z_STEP_PER_UNIT, I_STEP_PER_UNIT, J_STEP_PER_UNIT, K_STEP_PER_UNIT, E_STEP_PER_UNIT}
+  #define DEFAULT_MAX_FEEDRATE          { X_MAX_FEEDRATE, Y_MAX_FEEDRATE, Z_MAX_FEEDRATE, I_MAX_FEEDRATE, J_MAX_FEEDRATE, K_MAX_FEEDRATE, E_MAX_FEEDRATE}
+  #define DEFAULT_MAX_ACCELERATION          { X_MAX_ACCELERATION, Y_MAX_ACCELERATION, Z_MAX_ACCELERATION, I_MAX_ACCELERATION, J_MAX_ACCELERATION, K_MAX_ACCELERATION, E_MAX_ACCELERATION}
+#endif
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 300, 300, 300, 300, 300}
+// #define DEFAULT_MAX_FEEDRATE          { 300, 300, 300, 300, 300, 300, 300}
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -947,7 +999,7 @@
  * Override with M201
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 3000, 900, 3000, 3000, 3000, 3000, 3000 }
+// #define DEFAULT_MAX_ACCELERATION      { 3000, 900, 3000, 3000, 3000, 3000, 3000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -1306,18 +1358,19 @@
 #define Y_ENABLE_ON 0
 #define Z_ENABLE_ON 0
 #define E_ENABLE_ON 0 // For all extruders
-#define I_ENABLE_ON 0
-#define J_ENABLE_ON 0
-#define K_ENABLE_ON 0
+
+#define I_ENABLE_ON 0    // UNCOMMENT TO ENABLE THIS AXIS
+#define J_ENABLE_ON 0    // UNCOMMENT TO ENABLE THIS AXIS
+#define K_ENABLE_ON 0    // UNCOMMENT TO ENABLE THIS AXIS
 
 // Disable axis steppers immediately when they're not being stepped.
 // WARNING: When motors turn off there is a chance of losing position accuracy!
 #define DISABLE_X false
 #define DISABLE_Y false
 #define DISABLE_Z false
-#define DISABLE_I false
-#define DISABLE_J false
-#define DISABLE_K false
+#define DISABLE_I false  // UNCOMMENT TO ENABLE THIS AXIS
+#define DISABLE_J false  // UNCOMMENT TO ENABLE THIS AXIS
+#define DISABLE_K false  // UNCOMMENT TO ENABLE THIS AXIS
 
 // Turn off the display blinking that warns about possible accuracy reduction
 //#define DISABLE_REDUCED_ACCURACY_WARNING
@@ -1333,9 +1386,9 @@
 #define INVERT_X_DIR false
 #define INVERT_Y_DIR false
 #define INVERT_Z_DIR false
-#define INVERT_I_DIR false
-#define INVERT_J_DIR false
-#define INVERT_K_DIR false
+#define INVERT_I_DIR false   // UNCOMMENT TO ENABLE THIS AXIS
+#define INVERT_J_DIR false   // UNCOMMENT TO ENABLE THIS AXIS
+#define INVERT_K_DIR false   // UNCOMMENT TO ENABLE THIS AXIS
 
 // @section extruder
 
@@ -1371,14 +1424,14 @@
 #define X_HOME_DIR -1
 #define Y_HOME_DIR -1
 #define Z_HOME_DIR -1
-#define I_HOME_DIR -1
-#define J_HOME_DIR -1
-#define K_HOME_DIR -1
+#define I_HOME_DIR -1    // UNCOMMENT TO ENABLE THIS AXIS
+#define J_HOME_DIR -1    // UNCOMMENT TO ENABLE THIS AXIS
+#define K_HOME_DIR -1    // UNCOMMENT TO ENABLE THIS AXIS
 
 // @section machine
 
 // The size of the printable area
-#define X_BED_SIZE 200
+#define X_BED_SIZE 400
 #define Y_BED_SIZE 540
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
@@ -1388,12 +1441,12 @@
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
 #define Z_MAX_POS 200
-#define I_MIN_POS 0
-#define I_MAX_POS 350
-#define J_MIN_POS 0
-#define J_MAX_POS 360
-#define K_MIN_POS 0
-#define K_MAX_POS 360
+#define I_MIN_POS 0      // UNCOMMENT TO ENABLE THIS AXIS
+#define I_MAX_POS 350    // UNCOMMENT TO ENABLE THIS AXIS
+#define J_MIN_POS 0      // UNCOMMENT TO ENABLE THIS AXIS
+#define J_MAX_POS 360    // UNCOMMENT TO ENABLE THIS AXIS
+#define K_MIN_POS 0      // UNCOMMENT TO ENABLE THIS AXIS
+#define K_MAX_POS 360    // UNCOMMENT TO ENABLE THIS AXIS
 
 /**
  * Software Endstops
@@ -1410,9 +1463,9 @@
   #define MIN_SOFTWARE_ENDSTOP_X
   #define MIN_SOFTWARE_ENDSTOP_Y
   #define MIN_SOFTWARE_ENDSTOP_Z
-  #define MIN_SOFTWARE_ENDSTOP_I
-  #define MIN_SOFTWARE_ENDSTOP_J
-  #define MIN_SOFTWARE_ENDSTOP_K
+  #define MIN_SOFTWARE_ENDSTOP_I   // UNCOMMENT TO ENABLE THIS AXIS
+  #define MIN_SOFTWARE_ENDSTOP_J   // UNCOMMENT TO ENABLE THIS AXIS
+  #define MIN_SOFTWARE_ENDSTOP_K   // UNCOMMENT TO ENABLE THIS AXIS
 #endif
 
 // Max software endstops constrain movement within maximum coordinate bounds
@@ -1421,9 +1474,9 @@
   #define MAX_SOFTWARE_ENDSTOP_X
   #define MAX_SOFTWARE_ENDSTOP_Y
   #define MAX_SOFTWARE_ENDSTOP_Z
-  #define MAX_SOFTWARE_ENDSTOP_I
-  #define MAX_SOFTWARE_ENDSTOP_J
-  #define MAX_SOFTWARE_ENDSTOP_K
+  #define MAX_SOFTWARE_ENDSTOP_I   // UNCOMMENT TO ENABLE THIS AXIS
+  #define MAX_SOFTWARE_ENDSTOP_J   // UNCOMMENT TO ENABLE THIS AXIS
+  #define MAX_SOFTWARE_ENDSTOP_K   // UNCOMMENT TO ENABLE THIS AXIS
 #endif
 
 #if EITHER(MIN_SOFTWARE_ENDSTOPS, MAX_SOFTWARE_ENDSTOPS)
@@ -1754,7 +1807,22 @@
 #endif
 
 // Homing speeds (mm/min)
-#define HOMING_FEEDRATE_MM_M { (50*60), (30*60), (50*60), (10*60), (10*60), (10*60) }
+#define X_HOMMING_FEEDRATE_MM_M 50*60
+#define Y_HOMMING_FEEDRATE_MM_M 30*60
+#define Z_HOMMING_FEEDRATE_MM_M 50*60
+#define I_HOMMING_FEEDRATE_MM_M 10*60      // UNCOMMENT TO ENABLE THIS AXIS 
+#define J_HOMMING_FEEDRATE_MM_M 10*60      // UNCOMMENT TO ENABLE THIS AXIS
+#define K_HOMMING_FEEDRATE_MM_M 10*60      // UNCOMMENT TO ENABLE THIS AXIS
+
+#if LINEAR_AXES == 3
+  #define HOMING_FEEDRATE_MM_M { X_HOMMING_FEEDRATE_MM_M, Y_HOMMING_FEEDRATE_MM_M, Z_HOMMING_FEEDRATE_MM_M}
+#elif LINEAR_AXES == 4
+  #define HOMING_FEEDRATE_MM_M { X_HOMMING_FEEDRATE_MM_M, Y_HOMMING_FEEDRATE_MM_M, Z_HOMMING_FEEDRATE_MM_M, I_HOMMING_FEEDRATE_MM_M}
+#elif LINEAR_AXES == 5
+  #define HOMING_FEEDRATE_MM_M { X_HOMMING_FEEDRATE_MM_M, Y_HOMMING_FEEDRATE_MM_M, Z_HOMMING_FEEDRATE_MM_M, I_HOMMING_FEEDRATE_MM_M, J_HOMMING_FEEDRATE_MM_M}
+#elif LINEAR_AXES == 6
+  #define HOMING_FEEDRATE_MM_M { X_HOMMING_FEEDRATE_MM_M, Y_HOMMING_FEEDRATE_MM_M, Z_HOMMING_FEEDRATE_MM_M, I_HOMMING_FEEDRATE_MM_M, J_HOMMING_FEEDRATE_MM_M, K_HOMMING_FEEDRATE_MM_M }
+#endif
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS

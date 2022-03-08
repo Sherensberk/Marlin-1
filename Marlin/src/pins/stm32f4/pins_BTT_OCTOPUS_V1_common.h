@@ -106,20 +106,20 @@
 
 
 
-#define I_DIAG_PIN                          DV3_DIAG_PIN
-#define J_DIAG_PIN                          DV4_DIAG_PIN
-#define K_DIAG_PIN                          DV5_DIAG_PIN
-#define E0_DIAG_PIN                         DV6_DIAG_PIN
+#define I_DIAG_PIN                          DV3_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define J_DIAG_PIN                          DV4_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define K_DIAG_PIN                          DV5_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define E0_DIAG_PIN                         DV6_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
 
-#define I_STOP_PIN                          I_DIAG_PIN
-#define J_STOP_PIN                          J_DIAG_PIN
-#define K_STOP_PIN                          K_DIAG_PIN
-#define E0_STOP_PIN                         E0_DIAG_PIN
+#define I_STOP_PIN                          I_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define J_STOP_PIN                          J_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define K_STOP_PIN                          K_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define E0_STOP_PIN                         E0_DIAG_PIN    // UNCOMMENT TO ENABLE THIS AXIS
 
-#define I_MAX_PIN                          I_DIAG_PIN
-#define J_MAX_PIN                          J_DIAG_PIN
-#define K_MAX_PIN                          K_DIAG_PIN
-#define E0_MAX_PIN                         E0_DIAG_PIN
+#define I_MAX_PIN                          I_DIAG_PIN    // UNCOMMENT TO ENABLE THIS AXIS
+#define J_MAX_PIN                          J_DIAG_PIN    // UNCOMMENT TO ENABLE THIS AXIS
+#define K_MAX_PIN                          K_DIAG_PIN    // UNCOMMENT TO ENABLE THIS AXIS
+
 
 
 //
@@ -211,21 +211,22 @@
 #define Z_STOP_PIN                          Z_DIAG_PIN
 #define Z_MAX_PIN                           Z_DIAG_PIN 
 
-#define I_STEP_PIN                          DV3_STEP_PIN  // MOTOR 4
-#define I_DIR_PIN                           DV3_DIR_PIN
-#define I_ENABLE_PIN                        DV3_EN_PIN
-#define I_CS_PIN                            DV3_CS_PIN
+#define I_STEP_PIN                          DV3_STEP_PIN  // MOTOR 4   // UNCOMMENT TO ENABLE THIS AXIS
+#define I_DIR_PIN                           DV3_DIR_PIN    // UNCOMMENT TO ENABLE THIS AXIS
+#define I_ENABLE_PIN                        DV3_EN_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define I_CS_PIN                            DV3_CS_PIN   // UNCOMMENT TO ENABLE THIS AXIS
 
-#define J_STEP_PIN                          DV4_STEP_PIN  // MOTOR 5
-#define J_DIR_PIN                           DV4_DIR_PIN
-#define J_ENABLE_PIN                        DV4_EN_PIN
-#define J_CS_PIN                            DV4_CS_PIN
+#define J_STEP_PIN                          DV4_STEP_PIN  // MOTOR 5   // UNCOMMENT TO ENABLE THIS AXIS
+#define J_DIR_PIN                           DV4_DIR_PIN    // UNCOMMENT TO ENABLE THIS AXIS
+#define J_ENABLE_PIN                        DV4_EN_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define J_CS_PIN                            DV4_CS_PIN   // UNCOMMENT TO ENABLE THIS AXIS
 
-#define K_STEP_PIN                          DV5_STEP_PIN  // MOTOR 6
-#define K_DIR_PIN                           DV5_DIR_PIN
-#define K_ENABLE_PIN                        DV5_EN_PIN
-#define K_CS_PIN                            DV5_CS_PIN
+#define K_STEP_PIN                          DV5_STEP_PIN  // MOTOR 6   // UNCOMMENT TO ENABLE THIS AXIS
+#define K_DIR_PIN                           DV5_DIR_PIN    // UNCOMMENT TO ENABLE THIS AXIS
+#define K_ENABLE_PIN                        DV5_EN_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define K_CS_PIN                            DV5_CS_PIN   // UNCOMMENT TO ENABLE THIS AXIS
 
+#define E0_MAX_PIN                          E0_DIAG_PIN
 #define E0_STEP_PIN                         DV6_STEP_PIN  // MOTOR 7
 #define E0_DIR_PIN                          DV6_DIR_PIN
 #define E0_ENABLE_PIN                       DV6_EN_PIN
@@ -356,14 +357,15 @@
   // #define E3_SERIAL_TX_PIN                  PD3
   // #define E3_SERIAL_RX_PIN      E3_SERIAL_TX_PIN
  
-  #define I_SERIAL_TX_PIN                  PF2
-  #define I_SERIAL_RX_PIN      I_SERIAL_TX_PIN
+  #define I_SERIAL_TX_PIN                  PF2     // UNCOMMENT TO ENABLE THIS AXIS
+  #define I_SERIAL_RX_PIN      I_SERIAL_TX_PIN     // UNCOMMENT TO ENABLE THIS AXIS
 
-  #define J_SERIAL_TX_PIN                  PE4
-  #define J_SERIAL_RX_PIN      J_SERIAL_TX_PIN
+  #define J_SERIAL_TX_PIN                  PE4     // UNCOMMENT TO ENABLE THIS AXIS
+  #define J_SERIAL_RX_PIN      J_SERIAL_TX_PIN     // UNCOMMENT TO ENABLE THIS AXIS
 
-  #define K_SERIAL_TX_PIN                  PE1
-  #define K_SERIAL_RX_PIN      K_SERIAL_TX_PIN
+  #define K_SERIAL_TX_PIN                  PE1     // UNCOMMENT TO ENABLE THIS AXIS
+  #define K_SERIAL_RX_PIN      K_SERIAL_TX_PIN     // UNCOMMENT TO ENABLE THIS AXIS
+
   // Reduce baud rate to improve software serial reliability
   #define TMC_BAUD_RATE                    19200
 #endif

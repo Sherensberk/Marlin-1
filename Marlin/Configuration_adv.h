@@ -819,10 +819,69 @@
  * the position of the toolhead relative to the workspace.
  */
 
-#define SENSORLESS_BACKOFF_MM  { 2, 2, 2, 2, 2, 2 }  // (mm) Backoff from endstops before sensorless homing
+#define X_SENSORLESS_BACKOFF_MM 2
+#define X_HOMING_BUMP_MM 0
+#define X_HOMING_BUMP_DIVISOR 1
+#define X_RELATIVE_MODE false
 
-#define HOMING_BUMP_MM      { 0, 0, 0, 0, 0, 0 }       // (mm) Backoff from endstops after first bump
-#define HOMING_BUMP_DIVISOR { 1, 1, 1, 1, 1, 1}       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
+#define Y_SENSORLESS_BACKOFF_MM 2
+#define Y_HOMING_BUMP_MM 0
+#define Y_HOMING_BUMP_DIVISOR 1
+#define Y_RELATIVE_MODE false
+
+#define Z_SENSORLESS_BACKOFF_MM 2
+#define Z_HOMING_BUMP_MM 0
+#define Z_HOMING_BUMP_DIVISOR 1
+#define Z_RELATIVE_MODE false
+
+#define E_RELATIVE_MODE false
+
+#if LINEAR_AXES >= 4
+  #define I_SENSORLESS_BACKOFF_MM 2
+  #define I_HOMING_BUMP_MM 0
+  #define I_HOMING_BUMP_DIVISOR 1
+  #define I_RELATIVE_MODE false
+#endif
+#if LINEAR_AXES >= 5
+  #define J_SENSORLESS_BACKOFF_MM 2
+  #define J_HOMING_BUMP_MM 0
+  #define J_HOMING_BUMP_DIVISOR 1
+  #define J_RELATIVE_MODE false
+#endif
+#if LINEAR_AXES >= 6
+  #define K_SENSORLESS_BACKOFF_MM 2
+  #define K_HOMING_BUMP_MM 0
+  #define K_HOMING_BUMP_DIVISOR 1
+  #define K_RELATIVE_MODE false
+#endif
+
+// @section motion
+
+#if LINEAR_AXES == 3
+  #define AXIS_RELATIVE_MODES { X_RELATIVE_MODE, Y_RELATIVE_MODE, Z_RELATIVE_MODE, E_RELATIVE_MODE}
+  #define HOMING_BUMP_MM {X_HOMING_BUMP_MM, Y_HOMING_BUMP_MM, Z_HOMING_BUMP_MM}  
+  #define HOMING_BUMP_DIVISOR {X_HOMING_BUMP_DIVISOR, Y_HOMING_BUMP_DIVISOR, Z_HOMING_BUMP_DIVISOR}
+  #define SENSORLESS_BACKOFF_MM {X_SENSORLESS_BACKOFF_MM, Y_SENSORLESS_BACKOFF_MM, Z_SENSORLESS_BACKOFF_MM}
+#elif LINEAR_AXES == 4
+  #define AXIS_RELATIVE_MODES { X_RELATIVE_MODE, Y_RELATIVE_MODE, Z_RELATIVE_MODE, I_RELATIVE_MODE, E_RELATIVE_MODE}
+  #define HOMING_BUMP_MM {X_HOMING_BUMP_MM, Y_HOMING_BUMP_MM, Z_HOMING_BUMP_MM, I_HOMING_BUMP_MM}  
+  #define HOMING_BUMP_DIVISOR {X_HOMING_BUMP_DIVISOR, Y_HOMING_BUMP_DIVISOR, Z_HOMING_BUMP_DIVISOR, I_HOMING_BUMP_DIVISOR}
+  #define SENSORLESS_BACKOFF_MM {X_SENSORLESS_BACKOFF_MM, Y_SENSORLESS_BACKOFF_MM, Z_SENSORLESS_BACKOFF_MM, I_SENSORLESS_BACKOFF_MM}
+#elif LINEAR_AXES == 5
+  #define AXIS_RELATIVE_MODES { X_RELATIVE_MODE, Y_RELATIVE_MODE, Z_RELATIVE_MODE, I_RELATIVE_MODE, J_RELATIVE_MODE, E_RELATIVE_MODE}
+  #define HOMING_BUMP_MM {X_HOMING_BUMP_MM, Y_HOMING_BUMP_MM, Z_HOMING_BUMP_MM, I_HOMING_BUMP_MM, J_HOMING_BUMP_MM}  
+  #define HOMING_BUMP_DIVISOR {X_HOMING_BUMP_DIVISOR, Y_HOMING_BUMP_DIVISOR, Z_HOMING_BUMP_DIVISOR, I_HOMING_BUMP_DIVISOR, J_HOMING_BUMP_DIVISOR}
+  #define SENSORLESS_BACKOFF_MM {X_SENSORLESS_BACKOFF_MM, Y_SENSORLESS_BACKOFF_MM, Z_SENSORLESS_BACKOFF_MM, I_SENSORLESS_BACKOFF_MM, J_SENSORLESS_BACKOFF_MM}
+#elif LINEAR_AXES == 6
+  #define AXIS_RELATIVE_MODES { X_RELATIVE_MODE, Y_RELATIVE_MODE, Z_RELATIVE_MODE, I_RELATIVE_MODE, J_RELATIVE_MODE, K_RELATIVE_MODE, E_RELATIVE_MODE}
+  #define HOMING_BUMP_MM {X_HOMING_BUMP_MM, Y_HOMING_BUMP_MM, Z_HOMING_BUMP_MM, I_HOMING_BUMP_MM, J_HOMING_BUMP_MM, K_HOMING_BUMP_MM}  
+  #define HOMING_BUMP_DIVISOR {X_HOMING_BUMP_DIVISOR, Y_HOMING_BUMP_DIVISOR, Z_HOMING_BUMP_DIVISOR, I_HOMING_BUMP_DIVISOR, J_HOMING_BUMP_DIVISOR, K_HOMING_BUMP_DIVISOR}
+  #define SENSORLESS_BACKOFF_MM {X_SENSORLESS_BACKOFF_MM, Y_SENSORLESS_BACKOFF_MM, Z_SENSORLESS_BACKOFF_MM, I_SENSORLESS_BACKOFF_MM, J_SENSORLESS_BACKOFF_MM, K_SENSORLESS_BACKOFF_MM}
+#endif
+
+// #define SENSORLESS_BACKOFF_MM  { 2, 2, 2, 2, 2, 2 }  // (mm) Backoff from endstops before sensorless homing
+// #define HOMING_BUMP_MM      { 0, 0, 0, 0, 0, 0 }       // (mm) Backoff from endstops after first bump
+// #define HOMING_BUMP_DIVISOR { 1, 1, 1, 1, 1, 1}       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 
 //#define HOMING_BACKOFF_POST_MM { 2, 2, 2 }  // (mm) Backoff from endstops after homing
 
@@ -992,9 +1051,7 @@
 
 #endif
 
-// @section motion
 
-#define AXIS_RELATIVE_MODES { false, false, false, false, false, false, false}
 
 // Add a Duplicate option for well-separated conjoined nozzles
 //#define MULTI_NOZZLE_DUPLICATION
@@ -1003,10 +1060,11 @@
 #define INVERT_X_STEP_PIN false
 #define INVERT_Y_STEP_PIN false
 #define INVERT_Z_STEP_PIN false
-#define INVERT_I_STEP_PIN false
-#define INVERT_J_STEP_PIN false
-#define INVERT_K_STEP_PIN false
 #define INVERT_E_STEP_PIN false
+
+#define INVERT_I_STEP_PIN false     // UNCOMMENT TO ENABLE THIS AXIS
+#define INVERT_J_STEP_PIN false     // UNCOMMENT TO ENABLE THIS AXIS
+#define INVERT_K_STEP_PIN false     // UNCOMMENT TO ENABLE THIS AXIS
 
 /**
  * Idle Stepper Shutdown
@@ -1017,10 +1075,11 @@
 #define DISABLE_INACTIVE_X true
 #define DISABLE_INACTIVE_Y true
 #define DISABLE_INACTIVE_Z true  // Set 'false' if the nozzle could fall onto your printed part!
-#define DISABLE_INACTIVE_I true
-#define DISABLE_INACTIVE_J true
-#define DISABLE_INACTIVE_K true
 #define DISABLE_INACTIVE_E true
+
+#define DISABLE_INACTIVE_I true   // UNCOMMENT TO ENABLE THIS AXIS
+#define DISABLE_INACTIVE_J true   // UNCOMMENT TO ENABLE THIS AXIS
+#define DISABLE_INACTIVE_K true   // UNCOMMENT TO ENABLE THIS AXIS
 
 // Default Minimum Feedrates for printing and travel moves
 #define DEFAULT_MINIMUMFEEDRATE       0.0     // (mm/s) Minimum feedrate. Set with M205 S.
@@ -2725,33 +2784,32 @@
     //#define Z4_INTERPOLATE true
   #endif
 
-  #if AXIS_IS_TMC(I)
-    #define I_CURRENT      800
-    #define I_CURRENT_HOME I_CURRENT
-    #define I_MICROSTEPS    16
-    #define I_RSENSE         0.075
-    #define I_CHAIN_POS     -1
-    //#define I_INTERPOLATE  true
-  #endif
+  #if AXIS_IS_TMC(I)                   // UNCOMMENT TO ENABLE THIS AXIS
+    #define I_CURRENT      800         // UNCOMMENT TO ENABLE THIS AXIS 
+    #define I_CURRENT_HOME I_CURRENT   // UNCOMMENT TO ENABLE THIS AXIS 
+    #define I_MICROSTEPS    16         // UNCOMMENT TO ENABLE THIS AXIS
+    #define I_RSENSE         0.075     // UNCOMMENT TO ENABLE THIS AXIS
+    #define I_CHAIN_POS     -1         // UNCOMMENT TO ENABLE THIS AXIS
+    // #define I_INTERPOLATE  true      
+  #endif                               // UNCOMMENT TO ENABLE THIS AXIS
 
-  #if AXIS_IS_TMC(J)
-    #define J_CURRENT      800
-    #define J_CURRENT_HOME J_CURRENT
-    #define J_MICROSTEPS    16
-    #define J_RSENSE         0.075
-    #define J_CHAIN_POS     -1
-    //#define J_INTERPOLATE  true
-  #endif
+  #if AXIS_IS_TMC(J)                      // UNCOMMENT TO ENABLE THIS AXIS
+    #define J_CURRENT      800            // UNCOMMENT TO ENABLE THIS AXIS 
+    #define J_CURRENT_HOME J_CURRENT      // UNCOMMENT TO ENABLE THIS AXIS 
+    #define J_MICROSTEPS    16            // UNCOMMENT TO ENABLE THIS AXIS
+    #define J_RSENSE         0.075        // UNCOMMENT TO ENABLE THIS AXIS
+    #define J_CHAIN_POS     -1            // UNCOMMENT TO ENABLE THIS AXIS
+  //   #define J_INTERPOLATE       true 
+  #endif                                  // UNCOMMENT TO ENABLE THIS AXIS
 
-  #if AXIS_IS_TMC(K)
-    #define K_CURRENT      800
-    #define K_CURRENT_HOME K_CURRENT
-    #define K_MICROSTEPS    16
-    #define K_RSENSE         0.075
-    #define K_CHAIN_POS     -1
-    //#define K_INTERPOLATE  true
-  #endif
-
+  #if AXIS_IS_TMC(K)                  // UNCOMMENT TO ENABLE THIS AXIS
+    #define K_CURRENT      800        // UNCOMMENT TO ENABLE THIS AXIS 
+    #define K_CURRENT_HOME K_CURRENT  // UNCOMMENT TO ENABLE THIS AXIS 
+    #define K_MICROSTEPS    16        // UNCOMMENT TO ENABLE THIS AXIS
+    #define K_RSENSE         0.075    // UNCOMMENT TO ENABLE THIS AXIS
+    #define K_CHAIN_POS     -1        // UNCOMMENT TO ENABLE THIS AXIS
+    // #define K_INTERPOLATE  true
+  #endif                              // UNCOMMENT TO ENABLE THIS AXIS
   #if AXIS_IS_TMC(E0)
     #define E0_CURRENT      800
     #define E0_MICROSTEPS    16
@@ -3020,9 +3078,9 @@
     //#define Z2_STALL_SENSITIVITY Z_STALL_SENSITIVITY
     //#define Z3_STALL_SENSITIVITY Z_STALL_SENSITIVITY
     //#define Z4_STALL_SENSITIVITY Z_STALL_SENSITIVITY
-    #define I_STALL_SENSITIVITY  2
-    #define J_STALL_SENSITIVITY  2
-    #define K_STALL_SENSITIVITY  2
+    #define I_STALL_SENSITIVITY  2     // UNCOMMENT TO ENABLE THIS AXIS
+    #define J_STALL_SENSITIVITY  2     // UNCOMMENT TO ENABLE THIS AXIS
+    #define K_STALL_SENSITIVITY  2     // UNCOMMENT TO ENABLE THIS AXIS
     //#define SPI_ENDSTOPS              // TMC2130 only
     //#define IMPROVE_HOMING_RELIABILITY
   #endif
