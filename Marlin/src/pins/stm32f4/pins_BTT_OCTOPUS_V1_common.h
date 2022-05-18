@@ -23,17 +23,17 @@
 
 #include "env_validate.h"
 
+#define HAS_OTG_USB_HOST_SUPPORT                  // USB Flash Drive support
+#define USES_DIAG_JUMPERS
+
 // Onboard I2C EEPROM
 #define I2C_EEPROM
-#define MARLIN_EEPROM_SIZE                0x8000  // 32KB (24C32A)
+#define MARLIN_EEPROM_SIZE                0x1000  // 4KB (AT24C32)
 #define I2C_SCL_PIN                         PB8
 #define I2C_SDA_PIN                         PB9
 
-// USB Flash Drive support
-#define HAS_OTG_USB_HOST_SUPPORT
-
 // Avoid conflict with TIMER_TONE
-#define STEP_TIMER                            10
+#define STEP_TIMER 10
 
 //
 // Servos
@@ -106,32 +106,11 @@
 
 
 
-#define I_DIAG_PIN                          DV3_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
-#define J_DIAG_PIN                          DV4_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
-#define K_DIAG_PIN                          DV5_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
-#define E0_DIAG_PIN                         DV6_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
-
-#define I_STOP_PIN                          I_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
-#define J_STOP_PIN                          J_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
-#define K_STOP_PIN                          K_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
-#define E0_STOP_PIN                         E0_DIAG_PIN    // UNCOMMENT TO ENABLE THIS AXIS
-
-#define I_MAX_PIN                          I_DIAG_PIN    // UNCOMMENT TO ENABLE THIS AXIS
-#define J_MAX_PIN                          J_DIAG_PIN    // UNCOMMENT TO ENABLE THIS AXIS
-#define K_MAX_PIN                          K_DIAG_PIN    // UNCOMMENT TO ENABLE THIS AXIS
-
-
-
 //
 // Z Probe (when not Z_MIN_PIN)
 //
-
 #ifndef Z_MIN_PROBE_PIN
-  #if ENABLED(BLTOUCH)
-    #define Z_MIN_PROBE_PIN                 PB7
-  #else
-    #define Z_MIN_PROBE_PIN                 PC5   // Probe (Proximity switch) port
-  #endif
+  #define Z_MIN_PROBE_PIN                   PB7
 #endif
 
 //
@@ -177,12 +156,7 @@
   #define POWER_LOSS_PIN                    PC0   // PWRDET
 #endif
 
-//
-// NeoPixel LED
-//
-#ifndef NEOPIXEL_PIN
-  #define NEOPIXEL_PIN                      PB0
-#endif
+
 
 //
 // Steppers
@@ -194,6 +168,8 @@
 #define X_DIAG_PIN                          DV0_DIAG_PIN
 #define X_STOP_PIN                          X_DIAG_PIN
 #define X_MAX_PIN                           X_DIAG_PIN 
+// #define X_MIN_PIN                           X_DIAG_PIN 
+
 
 #define Y_STEP_PIN                          DV2_STEP_PIN   // MOTOR 1
 #define Y_DIR_PIN                           DV2_DIR_PIN
@@ -202,6 +178,7 @@
 #define Y_DIAG_PIN                          DV2_DIAG_PIN
 #define Y_STOP_PIN                          Y_DIAG_PIN
 #define Y_MAX_PIN                           Y_DIAG_PIN 
+// #define Y_MIN_PIN                           Y_DIAG_PIN 
 
 #define Z_STEP_PIN                          DV1_STEP_PIN  // MOTOR 3
 #define Z_DIR_PIN                           DV1_DIR_PIN
@@ -210,27 +187,43 @@
 #define Z_DIAG_PIN                          DV1_DIAG_PIN
 #define Z_STOP_PIN                          Z_DIAG_PIN
 #define Z_MAX_PIN                           Z_DIAG_PIN 
+// #define Z_MIN_PIN                           Z_DIAG_PIN 
 
 #define I_STEP_PIN                          DV3_STEP_PIN  // MOTOR 4   // UNCOMMENT TO ENABLE THIS AXIS
 #define I_DIR_PIN                           DV3_DIR_PIN    // UNCOMMENT TO ENABLE THIS AXIS
 #define I_ENABLE_PIN                        DV3_EN_PIN   // UNCOMMENT TO ENABLE THIS AXIS
 #define I_CS_PIN                            DV3_CS_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define I_DIAG_PIN                          DV3_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define I_STOP_PIN                          I_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define I_MAX_PIN                          I_DIAG_PIN    // UNCOMMENT TO ENABLE THIS AXIS
+// #define I_MIN_PIN                          I_DIAG_PIN    // UNCOMMENT TO ENABLE THIS AXIS
 
 #define J_STEP_PIN                          DV4_STEP_PIN  // MOTOR 5   // UNCOMMENT TO ENABLE THIS AXIS
 #define J_DIR_PIN                           DV4_DIR_PIN    // UNCOMMENT TO ENABLE THIS AXIS
 #define J_ENABLE_PIN                        DV4_EN_PIN   // UNCOMMENT TO ENABLE THIS AXIS
 #define J_CS_PIN                            DV4_CS_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define J_DIAG_PIN                          DV4_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define J_STOP_PIN                          J_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define J_MAX_PIN                           J_DIAG_PIN    // UNCOMMENT TO ENABLE THIS AXIS
+// #define J_MIN_PIN                           J_DIAG_PIN    // UNCOMMENT TO ENABLE THIS AXIS
 
 #define K_STEP_PIN                          DV5_STEP_PIN  // MOTOR 6   // UNCOMMENT TO ENABLE THIS AXIS
 #define K_DIR_PIN                           DV5_DIR_PIN    // UNCOMMENT TO ENABLE THIS AXIS
 #define K_ENABLE_PIN                        DV5_EN_PIN   // UNCOMMENT TO ENABLE THIS AXIS
 #define K_CS_PIN                            DV5_CS_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define K_DIAG_PIN                          DV5_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define K_STOP_PIN                          K_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define K_MAX_PIN                          K_DIAG_PIN    // UNCOMMENT TO ENABLE THIS AXIS
+// #define K_MIN_PIN                          K_DIAG_PIN    // UNCOMMENT TO ENABLE THIS AXIS
 
-#define E0_MAX_PIN                          E0_DIAG_PIN
 #define E0_STEP_PIN                         DV6_STEP_PIN  // MOTOR 7
 #define E0_DIR_PIN                          DV6_DIR_PIN
 #define E0_ENABLE_PIN                       DV6_EN_PIN
 #define E0_CS_PIN                           DV6_CS_PIN
+#define E0_DIAG_PIN                         DV6_DIAG_PIN   // UNCOMMENT TO ENABLE THIS AXIS
+#define E0_STOP_PIN                         E0_DIAG_PIN    // UNCOMMENT TO ENABLE THIS AXIS
+#define E0_MAX_PIN                          E0_DIAG_PIN
+// #define E0_MIN_PIN                          E0_DIAG_PIN
 
 /**
 #define E3_STEP_PIN                         PE2   // MOTOR 6
@@ -313,7 +306,6 @@
   #endif
 #endif
 
-
 #if HAS_TMC_UART
   /**
    * TMC2208/TMC2209 stepper drivers
@@ -345,26 +337,17 @@
   #define Z2_SERIAL_TX_PIN                  PC7
   #define Z2_SERIAL_RX_PIN      Z2_SERIAL_TX_PIN
 
-  // #define E0_SERIAL_TX_PIN                  PF2
-  // #define E0_SERIAL_RX_PIN      E0_SERIAL_TX_PIN
+  #define E0_SERIAL_TX_PIN                  PF2
+  #define E0_SERIAL_RX_PIN      E0_SERIAL_TX_PIN
 
-  // #define E1_SERIAL_TX_PIN                  PE4
-  // #define E1_SERIAL_RX_PIN      E1_SERIAL_TX_PIN
+  #define E1_SERIAL_TX_PIN                  PE4
+  #define E1_SERIAL_RX_PIN      E1_SERIAL_TX_PIN
 
-  // #define E2_SERIAL_TX_PIN                  PE1
-  // #define E2_SERIAL_RX_PIN      E2_SERIAL_TX_PIN
+  #define E2_SERIAL_TX_PIN                  PE1
+  #define E2_SERIAL_RX_PIN      E2_SERIAL_TX_PIN
 
-  // #define E3_SERIAL_TX_PIN                  PD3
-  // #define E3_SERIAL_RX_PIN      E3_SERIAL_TX_PIN
- 
-  #define I_SERIAL_TX_PIN                  PF2     // UNCOMMENT TO ENABLE THIS AXIS
-  #define I_SERIAL_RX_PIN      I_SERIAL_TX_PIN     // UNCOMMENT TO ENABLE THIS AXIS
-
-  #define J_SERIAL_TX_PIN                  PE4     // UNCOMMENT TO ENABLE THIS AXIS
-  #define J_SERIAL_RX_PIN      J_SERIAL_TX_PIN     // UNCOMMENT TO ENABLE THIS AXIS
-
-  #define K_SERIAL_TX_PIN                  PE1     // UNCOMMENT TO ENABLE THIS AXIS
-  #define K_SERIAL_RX_PIN      K_SERIAL_TX_PIN     // UNCOMMENT TO ENABLE THIS AXIS
+  #define E3_SERIAL_TX_PIN                  PD3
+  #define E3_SERIAL_RX_PIN      E3_SERIAL_TX_PIN
 
   // Reduce baud rate to improve software serial reliability
   #define TMC_BAUD_RATE                    19200
@@ -375,7 +358,7 @@
  * (LCD_EN) PE9  | 8  7 | PE10 (LCD_RS)       (BTN_EN1) PB2  | 8  7 | PA4  (SD_SS)
  * (LCD_D4) PE12   6  5 | PE13 (LCD_D5)       (BTN_EN2) PB1    6  5 | PA7  (MOSI)
  * (LCD_D6) PE14 | 4  3 | PE15 (LCD_D7)     (SD_DETECT) PC15 | 4  3 | RESET
- *          GND  | 2  1 | 5V                            GND  | 2  1 | NC
+ *           GND | 2  1 | 5V                             GND | 2  1 | --
  *                ------                                      ------
  *                 EXP1                                        EXP2
  */
@@ -424,14 +407,14 @@
 
 #if ENABLED(BTT_MOTOR_EXPANSION)
   /**
-   *         ------                        ------
-   *     NC | 1  2 | GND               NC | 1  2 | GND
-   *     NC | 3  4 | M1EN            M2EN | 3  4 | M3EN
-   *  M1STP | 5  6   M1DIR           M1RX | 5  6   M1DIAG
-   *  M2DIR | 7  8 | M2STP           M2RX | 7  8 | M2DIAG
-   *  M3DIR | 9 10 | M3STP           M3RX | 9 10 | M3DIAG
-   *         ------                        ------
-   *         EXP2                         EXP1
+   *         ------                  ------
+   * M3DIAG |10  9 | M3RX     M3STP |10  9 | M3DIR
+   * M2DIAG | 8  7 | M2RX     M2STP | 8  7 | M2DIR
+   * M1DIAG   6  5 | M1RX     M1DIR   6  5 | M1STP
+   *   M3EN | 4  3 | M2EN      M1EN | 4  3 | --
+   *    GND | 2  1 | --         GND | 2  1 | --
+   *        ------                   ------
+   *         EXP1                     EXP2
    */
 
   // M1 on Driver Expansion Module
@@ -538,7 +521,7 @@
 #endif  // HAS_WIRED_LCD
 
 // Alter timing for graphical display
-#if ENABLED(U8GLIB_ST7920)
+#if IS_U8GLIB_ST7920
   #define BOARD_ST7920_DELAY_1               120
   #define BOARD_ST7920_DELAY_2                80
   #define BOARD_ST7920_DELAY_3               580
@@ -563,6 +546,13 @@
 #endif
 
 //
+// NeoPixel LED
+//
+#ifndef NEOPIXEL_PIN
+  #define NEOPIXEL_PIN                      PB0
+#endif
+
+//
 // WIFI
 //
 
@@ -572,9 +562,9 @@
  *  (ESP-CS) PB12 | 10 |       | 7 | PB15 (ESP-MOSI)
  *           3.3V | 11 |       | 6 | PB14 (ESP-MISO)
  * (ESP-IO0)  PD7 | 12 |       | 5 | PB13 (ESP-CLK)
- * (ESP-IO4) PD10 | 13 |       | 4 | NC
- *             NC | 14 |       | 3 | PE15 (ESP-EN)
- *  (ESP-RX)  PD8 | 15 |       | 2 | NC
+ * (ESP-IO4) PD10 | 13 |       | 4 | --
+ *             -- | 14 |       | 3 | PE15 (ESP-EN)
+ *  (ESP-RX)  PD8 | 15 |       | 2 | --
  *  (ESP-TX)  PD9 | 16 |       | 1 | PE14 (ESP-RST)
  *                      -------
  *                       WIFI

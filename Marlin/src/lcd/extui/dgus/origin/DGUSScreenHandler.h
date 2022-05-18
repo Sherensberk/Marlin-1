@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2022 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -21,11 +21,15 @@
  */
 #pragma once
 
-#include "../DGUSDisplay.h"
-#include "../DGUSVPVariable.h"
-#include "../DGUSDisplayDef.h"
+#include "DGUSDisplay.h"
+#include "DGUSVPVariable.h"
+#include "DGUSDisplayDef.h"
 
+<<<<<<< HEAD:Marlin/src/lcd/extui/dgus/origin/DGUSScreenHandler.h
 #include "../../../../inc/MarlinConfig.h"
+=======
+#include "../../../inc/MarlinConfig.h"
+>>>>>>> c814fe98d7e250692908af03836a7c362a5ce843:Marlin/src/lcd/extui/dgus/DGUSScreenHandlerBase.h
 
 enum DGUSLCD_Screens : uint8_t;
 
@@ -37,9 +41,19 @@ public:
 
   // Send all 4 strings that are displayed on the infoscreen, confirmation screen and kill screen
   // The bools specifying whether the strings are in RAM or FLASH.
+<<<<<<< HEAD:Marlin/src/lcd/extui/dgus/origin/DGUSScreenHandler.h
   static void sendinfoscreen(const char *line1, const char *line2, const char *line3, const char *line4, bool l1inflash, bool l2inflash, bool l3inflash, bool liinflash);
+=======
+  static void sendinfoscreen(PGM_P const line1, PGM_P const line2, PGM_P const line3, PGM_P const line4, bool l1inflash, bool l2inflash, bool l3inflash, bool liinflash);
+  static void sendinfoscreen(FSTR_P const line1, FSTR_P const line2, PGM_P const line3, PGM_P const line4, bool l1inflash, bool l2inflash, bool l3inflash, bool liinflash) {
+    sendinfoscreen(FTOP(line1), FTOP(line2), line3, line4, l1inflash, l2inflash, l3inflash, liinflash);
+  }
+  static void sendinfoscreen(FSTR_P const line1, FSTR_P const line2, FSTR_P const line3, FSTR_P const line4, bool l1inflash, bool l2inflash, bool l3inflash, bool liinflash) {
+    sendinfoscreen(FTOP(line1), FTOP(line2), FTOP(line3), FTOP(line4), l1inflash, l2inflash, l3inflash, liinflash);
+  }
+>>>>>>> c814fe98d7e250692908af03836a7c362a5ce843:Marlin/src/lcd/extui/dgus/DGUSScreenHandlerBase.h
 
-  static void HandleUserConfirmationPopUp(uint16_t ConfirmVP, const char *line1, const char *line2, const char *line3, const char *line4, bool l1inflash, bool l2inflash, bool l3inflash, bool liinflash);
+  static void HandleUserConfirmationPopUp(uint16_t ConfirmVP, PGM_P const line1, PGM_P const line2, PGM_P const line3, PGM_P const line4, bool l1inflash, bool l2inflash, bool l3inflash, bool liinflash);
 
   // "M117" Message -- msg is a RAM ptr.
   static void setstatusmessage(const char *msg);
@@ -132,12 +146,12 @@ public:
     static void SDCardError();
   #endif
 
-  // OK Button the Confirm screen.
+  // OK Button on the Confirm screen.
   static void ScreenConfirmedOK(DGUS_VP_Variable &var, void *val_ptr);
 
-  // Update data after went to new screen (by display or by GotoScreen)
-  // remember: store the last-displayed screen, so it can get returned to.
-  // (e.g for pop up messages)
+  // Update data after going to a new screen (by display or by GotoScreen)
+  // remember to store the last-displayed screen so it can be restored.
+  // (e.g., for popup messages)
   static void UpdateNewScreen(DGUSLCD_Screens newscreen, bool popup=false);
 
   // Recall the remembered screen.
@@ -207,15 +221,15 @@ public:
   }
 
   // Force an update of all VP on the current screen.
-  static inline void ForceCompleteUpdate() { update_ptr = 0; ScreenComplete = false; }
+  static void ForceCompleteUpdate() { update_ptr = 0; ScreenComplete = false; }
   // Has all VPs sent to the screen
-  static inline bool IsScreenComplete() { return ScreenComplete; }
+  static bool IsScreenComplete() { return ScreenComplete; }
 
-  static inline DGUSLCD_Screens getCurrentScreen() { return current_screen; }
+  static DGUSLCD_Screens getCurrentScreen() { return current_screen; }
 
-  static inline void SetupConfirmAction( void (*f)()) { confirm_action_cb = f; }
+  static void SetupConfirmAction( void (*f)()) { confirm_action_cb = f; }
 
-private:
+protected:
   static DGUSLCD_Screens current_screen;  //< currently on screen
   static constexpr uint8_t NUM_PAST_SCREENS = 4;
   static DGUSLCD_Screens past_screens[NUM_PAST_SCREENS]; //< LIFO with past screens for the "back" button.
@@ -233,8 +247,3 @@ private:
 
   static void (*confirm_action_cb)();
 };
-
-#if ENABLED(POWER_LOSS_RECOVERY)
-  #define PLR_SCREEN_RECOVER DGUSLCD_SCREEN_SDPRINTMANIPULATION
-  #define PLR_SCREEN_CANCEL DGUSLCD_SCREEN_STATUS
-#endif
