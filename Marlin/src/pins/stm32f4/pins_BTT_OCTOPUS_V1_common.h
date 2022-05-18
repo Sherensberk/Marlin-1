@@ -56,11 +56,11 @@
  * (the error will follow the 'J' / 'B' axis regardless of the driver / pins it is on.
 **/
 
-#define DV0_DIAG_PIN                          PG12  //PG6   (pg6 -> pc4: driver0 | pg12 -> pf2 driver4)
-#define DV0_EN_PIN                            PG2   //PF14
-#define DV0_STEP_PIN                          PF9   //PF13
-#define DV0_DIR_PIN                           PF10  //PF12
-#define DV0_CS_PIN                            PF2   //PC4
+#define DV0_DIAG_PIN                          PG6 
+#define DV0_EN_PIN                            PF14
+#define DV0_STEP_PIN                          PF13
+#define DV0_DIR_PIN                           PF12
+#define DV0_CS_PIN                            PC4 
 
 #define DV1_DIAG_PIN                          PG9
 #define DV1_EN_PIN                            PF15
@@ -80,11 +80,11 @@
 #define DV3_DIR_PIN                           PC1
 #define DV3_CS_PIN                            PC7
 
-#define DV4_DIAG_PIN                          PG6   //PG12 (pg6 -> pc4: driver0 | pg12 -> pf2 driver4) 
-#define DV4_EN_PIN                            PF14  //PG2
-#define DV4_STEP_PIN                          PF13  //PF9
-#define DV4_DIR_PIN                           PF12  //PF10
-#define DV4_CS_PIN                            PC4   //PF2
+#define DV4_DIAG_PIN                          PG12
+#define DV4_EN_PIN                            PG2 
+#define DV4_STEP_PIN                          PF9 
+#define DV4_DIR_PIN                           PF10
+#define DV4_CS_PIN                            PF2 
 
 #define DV5_DIAG_PIN                          PG13
 #define DV5_EN_PIN                            PF1

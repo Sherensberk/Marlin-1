@@ -932,15 +932,15 @@
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
 
-#define X_STEP_PER_UNIT 80
+#define X_STEP_PER_UNIT 40
 #define X_MAX_FEEDRATE 300
 #define X_MAX_ACCELERATION 3000
 
-#define Y_STEP_PER_UNIT 80
+#define Y_STEP_PER_UNIT 40
 #define Y_MAX_FEEDRATE 300
 #define Y_MAX_ACCELERATION 900
 
-#define Z_STEP_PER_UNIT 80
+#define Z_STEP_PER_UNIT 400
 #define Z_MAX_FEEDRATE 300
 #define Z_MAX_ACCELERATION 3000
 
@@ -1431,8 +1431,8 @@
 // @section machine
 
 // The size of the printable area
-#define X_BED_SIZE 400
-#define Y_BED_SIZE 540
+#define X_BED_SIZE 710
+#define Y_BED_SIZE 1080
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -1809,7 +1809,7 @@
 // Homing speeds (mm/min)
 #define X_HOMMING_FEEDRATE_MM_M 50*60
 #define Y_HOMMING_FEEDRATE_MM_M 30*60
-#define Z_HOMMING_FEEDRATE_MM_M 50*60
+#define Z_HOMMING_FEEDRATE_MM_M 20*60
 #define I_HOMMING_FEEDRATE_MM_M 10*60      // UNCOMMENT TO ENABLE THIS AXIS 
 #define J_HOMMING_FEEDRATE_MM_M 10*60      // UNCOMMENT TO ENABLE THIS AXIS
 #define K_HOMMING_FEEDRATE_MM_M 10*60      // UNCOMMENT TO ENABLE THIS AXIS
@@ -2978,7 +2978,7 @@
 #endif
 
 // Support for Adafruit NeoPixel LED driver
-//#define NEOPIXEL_LED
+#define NEOPIXEL_LED
 #if ENABLED(NEOPIXEL_LED)
   #define NEOPIXEL_TYPE   NEO_GRBW // NEO_GRBW / NEO_GRB - four/three channel driver type (defined in Adafruit_NeoPixel.h)
   //#define NEOPIXEL_PIN     4     // LED driving pin
