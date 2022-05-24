@@ -190,6 +190,30 @@
     #define LCD_PINS_RS                     PB8
     #define LCD_PINS_ENABLE          EXP1_03_PIN
     #define LCD_PINS_D4                     PB9
+    
+  #elif ENABLED(REPRAP_DISCOUNT_SMART_CONTROLLER)
+
+    #define BEEPER_PIN                      PB5
+    #define BTN_ENC                  EXP1_09_PIN
+
+    #define BTN_EN1                         PA9
+    #define BTN_EN2                         PA10
+
+    #define LCD_PINS_RS                     PB8
+    #define LCD_PINS_ENABLE          EXP1_03_PIN
+    #define LCD_PINS_D4                     PB9
+    
+    //  wRONG
+    // #define LCD_PINS_RS              EXP2_04_PIN  // CS chip select /SS chip slave select
+    // #define LCD_PINS_ENABLE          EXP2_05_PIN  // SID (MOSI)
+    // #define LCD_PINS_D4              EXP2_09_PIN  // SCK (CLK) clock
+    //  RIGHT
+    // #define LCD_PINS_RS              AUX2_06_PIN
+    // #define LCD_PINS_ENABLE          AUX2_08_PIN
+    // #define LCD_PINS_D4              AUX2_10_PIN
+    // #define LCD_PINS_D5              AUX2_09_PIN
+    // #define LCD_PINS_D6              AUX2_07_PIN
+    // #define LCD_PINS_D7              AUX2_05_PIN
 
   #elif ENABLED(ZONESTAR_LCD)                     // ANET A8 LCD Controller - Must convert to 3.3V - CONNECTING TO 5V WILL DAMAGE THE BOARD!
 
