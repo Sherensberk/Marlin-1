@@ -232,7 +232,8 @@ void menu_main() {
 
   START_MENU();
   BACK_ITEM(MSG_INFO_SCREEN);
-
+  ui.goto_screen(menu_motion);
+  
   #if ENABLED(SDSUPPORT)
 
     #if !defined(MEDIA_MENU_AT_TOP) && !HAS_ENCODER_WHEEL
@@ -321,9 +322,9 @@ void menu_main() {
     SUBMENU(MSG_CUTTER(MENU), STICKY_SCREEN(menu_spindle_laser));
   #endif
 
-  #if HAS_TEMPERATURE
-    SUBMENU(MSG_TEMPERATURE, menu_temperature);
-  #endif
+  // #if HAS_TEMPERATURE
+  //   SUBMENU(MSG_TEMPERATURE, menu_temperature);
+  // #endif
 
   #if HAS_POWER_MONITOR
     SUBMENU(MSG_POWER_MONITOR, menu_power_monitor);

@@ -654,6 +654,12 @@ void MarlinUI::init() {
     if (did_expire) reset_status();
 
     #if HAS_MARLINUI_MENU
+      // if (use_click()) {]
+      // #ifndef GOT_MSsds
+      //   #define GOT_MSsds
+      //   const millis_t var_ms = millis();
+      // #endif
+      // if ((millis() - var_ms) > 10000) {
       if (use_click()) {
         #if BOTH(FILAMENT_LCD_DISPLAY, SDSUPPORT)
           next_filament_display = millis() + 5000UL;  // Show status message for 5s
@@ -763,7 +769,7 @@ void MarlinUI::init() {
 
     ManualMove MarlinUI::manual_move{};
 
-    millis_t ManualMove::start_time = 0;
+    millis_t ManualMove::start_time = 2000;
     float ManualMove::menu_scale = 1;
     #if IS_KINEMATIC
       float ManualMove::offset = 0;
