@@ -596,7 +596,6 @@ void MarlinUI::init() {
   #endif
 
   void MarlinUI::status_screen() {
-
     TERN_(HAS_MARLINUI_MENU, ENCODER_RATE_MULTIPLY(false));
 
     #if BASIC_PROGRESS_BAR

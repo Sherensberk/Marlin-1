@@ -3656,7 +3656,7 @@
     #define LCD_TIMEOUT_TO_STATUS 15000
   #endif
   #if LCD_TIMEOUT_TO_STATUS
-    #define SCREENS_CAN_TIME_OUT 1
+    #define SCREENS_CAN_TIME_OUT 0
   #endif
 #endif
 
