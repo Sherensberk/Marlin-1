@@ -1431,8 +1431,8 @@
 // @section machine
 
 // The size of the printable area
-#define X_BED_SIZE 710
-#define Y_BED_SIZE 1080
+#define X_BED_SIZE 1080
+#define Y_BED_SIZE 710
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -1440,7 +1440,7 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 200
+#define Z_MAX_POS 75
 #define I_MIN_POS 0      // UNCOMMENT TO ENABLE THIS AXIS
 #define I_MAX_POS 350    // UNCOMMENT TO ENABLE THIS AXIS
 #define J_MIN_POS 0      // UNCOMMENT TO ENABLE THIS AXIS

@@ -187,21 +187,21 @@
 //
 // Steppers
 //
-#define X_STEP_PIN                          DV0_STEP_PIN  // MOTOR 0
-#define X_DIR_PIN                           DV0_DIR_PIN
-#define X_ENABLE_PIN                        DV0_EN_PIN
-#define X_CS_PIN                            DV0_CS_PIN
-#define X_DIAG_PIN                          DV0_DIAG_PIN
-#define X_STOP_PIN                          X_DIAG_PIN
-#define X_MAX_PIN                           X_DIAG_PIN 
+#define X_STEP_PIN                          DV2_STEP_PIN  // MOTOR 1
+#define X_DIR_PIN                           DV2_DIR_PIN
+#define X_ENABLE_PIN                        DV2_EN_PIN
+#define X_CS_PIN                            DV2_CS_PIN
+#define X_DIAG_PIN                          DV2_DIAG_PIN
+#define X_STOP_PIN                          DV2_DIAG_PIN
+#define X_MAX_PIN                           DV2_DIAG_PIN 
 
-#define Y_STEP_PIN                          DV2_STEP_PIN   // MOTOR 1
-#define Y_DIR_PIN                           DV2_DIR_PIN
-#define Y_ENABLE_PIN                        DV2_EN_PIN
-#define Y_CS_PIN                            DV2_CS_PIN
-#define Y_DIAG_PIN                          DV2_DIAG_PIN
-#define Y_STOP_PIN                          Y_DIAG_PIN
-#define Y_MAX_PIN                           Y_DIAG_PIN 
+#define Y_STEP_PIN                          DV0_STEP_PIN   // MOTOR 0
+#define Y_DIR_PIN                           DV0_DIR_PIN
+#define Y_ENABLE_PIN                        DV0_EN_PIN
+#define Y_CS_PIN                            DV0_CS_PIN
+#define Y_DIAG_PIN                          DV0_DIAG_PIN
+#define Y_STOP_PIN                          DV0_DIAG_PIN
+#define Y_MAX_PIN                           DV0_DIAG_PIN 
 
 #define Z_STEP_PIN                          DV1_STEP_PIN  // MOTOR 3
 #define Z_DIR_PIN                           DV1_DIR_PIN
