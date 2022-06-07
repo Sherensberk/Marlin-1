@@ -676,7 +676,7 @@
 
 // If you want endstops to stay on (by default) even when not homing
 // enable this option. Override at any time with M120, M121.
-//#define ENDSTOPS_ALWAYS_ON_DEFAULT
+// #define ENDSTOPS_ALWAYS_ON_DEFAULT
 
 // @section extras
 
@@ -885,9 +885,9 @@
 
 //#define HOMING_BACKOFF_POST_MM { 2, 2, 2 }  // (mm) Backoff from endstops after homing
 
-//#define QUICK_HOME                          // If G28 contains XY do a diagonal move first
+#define QUICK_HOME                          // If G28 contains XY do a diagonal move first
 //#define HOME_Y_BEFORE_X                     // If G28 contains XY home Y before X
-//#define HOME_Z_FIRST                        // Home Z first. Requires a Z-MIN endstop (not a probe).
+#define HOME_Z_FIRST                        // Home Z first. Requires a Z-MIN endstop (not a probe).
 //#define CODEPENDENT_XY_HOMING               // If X/Y can't home without homing Y/X first
 
 // @section bltouch
@@ -1216,7 +1216,7 @@
  * vibration and surface artifacts. The algorithm adapts to provide the best possible step smoothing at the
  * lowest stepping frequencies.
  */
-//#define ADAPTIVE_STEP_SMOOTHING
+#define ADAPTIVE_STEP_SMOOTHING
 
 /**
  * Custom Microstepping
@@ -1230,7 +1230,7 @@
 //#define MICROSTEP32 HIGH,LOW,HIGH
 
 // Microstep settings (Requires a board with pins named X_MS1, X_MS2, etc.)
-#define MICROSTEP_MODES { 16, 16, 16, 16, 16, 16, 16 }
+// #define MICROSTEP_MODES { 16, 16, 16, 16, 16, 16, 16 }
 
 /**
  *  @section  stepper motor current
@@ -2169,7 +2169,7 @@
 //
 // G60/G61 Position Save and Return
 //
-//#define SAVED_POSITIONS 1         // Each saved position slot costs 12 bytes
+#define SAVED_POSITIONS 1         // Each saved position slot costs 12 bytes
 
 //
 // G2/G3 Arc Support
@@ -2200,7 +2200,7 @@
  * less step aliasing by calculating all motions in advance.
  * Preparing your G-code: https://github.com/colinrgodsey/step-daemon
  */
-//#define DIRECT_STEPPING
+// #define DIRECT_STEPPING
 
 /**
  * G38 Probe Target
@@ -2231,8 +2231,8 @@
  *
  * Override the default value based on the driver type set in Configuration.h.
  */
-//#define MINIMUM_STEPPER_POST_DIR_DELAY 650
-//#define MINIMUM_STEPPER_PRE_DIR_DELAY 650
+// #define MINIMUM_STEPPER_POST_DIR_DELAY 650
+// #define MINIMUM_STEPPER_PRE_DIR_DELAY 650
 
 /**
  * Minimum stepper driver pulse width (in µs)
@@ -2350,9 +2350,9 @@
  * - During Hold all Emergency Parser commands are available, as usual.
  * - Enable NANODLP_Z_SYNC and NANODLP_ALL_AXIS for move command end-state reports.
  */
-//#define REALTIME_REPORTING_COMMANDS
+#define REALTIME_REPORTING_COMMANDS
 #if ENABLED(REALTIME_REPORTING_COMMANDS)
-  //#define FULL_REPORT_TO_HOST_FEATURE   // Auto-report the machine status like Grbl CNC
+  #define FULL_REPORT_TO_HOST_FEATURE   // Auto-report the machine status like Grbl CNC
 #endif
 
 // Bad Serial-connections can miss a received command by sending an 'ok'
@@ -2362,7 +2362,7 @@
 //#define NO_TIMEOUTS 1000 // Milliseconds
 
 // Some clients will have this feature soon. This could make the NO_TIMEOUTS unnecessary.
-//#define ADVANCED_OK
+// #define ADVANCED_OK
 
 // Printrun may have trouble receiving long strings all at once.
 // This option inserts short delays between lines of serial output.
@@ -2784,31 +2784,35 @@
     //#define Z4_INTERPOLATE true
   #endif
 
-  #if AXIS_IS_TMC(I)                   // UNCOMMENT TO ENABLE THIS AXIS
-    #define I_CURRENT      800         // UNCOMMENT TO ENABLE THIS AXIS 
-    #define I_CURRENT_HOME I_CURRENT   // UNCOMMENT TO ENABLE THIS AXIS 
-    #define I_MICROSTEPS    16         // UNCOMMENT TO ENABLE THIS AXIS
-    #define I_RSENSE         0.075     // UNCOMMENT TO ENABLE THIS AXIS
-    #define I_CHAIN_POS     -1         // UNCOMMENT TO ENABLE THIS AXIS
-    // #define I_INTERPOLATE  true      
+  #if LINEAR_AXES >= 4
+    #if AXIS_IS_TMC(I)                   // UNCOMMENT TO ENABLE THIS AXIS
+      #define I_CURRENT      800         // UNCOMMENT TO ENABLE THIS AXIS 
+      #define I_CURRENT_HOME I_CURRENT   // UNCOMMENT TO ENABLE THIS AXIS 
+      #define I_MICROSTEPS    16         // UNCOMMENT TO ENABLE THIS AXIS
+      #define I_RSENSE         0.075     // UNCOMMENT TO ENABLE THIS AXIS
+      #define I_CHAIN_POS     -1         // UNCOMMENT TO ENABLE THIS AXIS
+      // #define I_INTERPOLATE  true      
+    #endif                               // UNCOMMENT TO ENABLE THIS AXIS
   #endif                               // UNCOMMENT TO ENABLE THIS AXIS
-
-  #if AXIS_IS_TMC(J)                      // UNCOMMENT TO ENABLE THIS AXIS
-    #define J_CURRENT      800            // UNCOMMENT TO ENABLE THIS AXIS 
-    #define J_CURRENT_HOME J_CURRENT      // UNCOMMENT TO ENABLE THIS AXIS 
-    #define J_MICROSTEPS    16            // UNCOMMENT TO ENABLE THIS AXIS
-    #define J_RSENSE         0.075        // UNCOMMENT TO ENABLE THIS AXIS
-    #define J_CHAIN_POS     -1            // UNCOMMENT TO ENABLE THIS AXIS
-  //   #define J_INTERPOLATE       true 
+  #if LINEAR_AXES >= 5
+    #if AXIS_IS_TMC(J)                      // UNCOMMENT TO ENABLE THIS AXIS
+      #define J_CURRENT      800            // UNCOMMENT TO ENABLE THIS AXIS 
+      #define J_CURRENT_HOME J_CURRENT      // UNCOMMENT TO ENABLE THIS AXIS 
+      #define J_MICROSTEPS    16            // UNCOMMENT TO ENABLE THIS AXIS
+      #define J_RSENSE         0.075        // UNCOMMENT TO ENABLE THIS AXIS
+      #define J_CHAIN_POS     -1            // UNCOMMENT TO ENABLE THIS AXIS
+    //   #define J_INTERPOLATE       true 
+    #endif                                  // UNCOMMENT TO ENABLE THIS AXIS
   #endif                                  // UNCOMMENT TO ENABLE THIS AXIS
-
-  #if AXIS_IS_TMC(K)                  // UNCOMMENT TO ENABLE THIS AXIS
-    #define K_CURRENT      800        // UNCOMMENT TO ENABLE THIS AXIS 
-    #define K_CURRENT_HOME K_CURRENT  // UNCOMMENT TO ENABLE THIS AXIS 
-    #define K_MICROSTEPS    16        // UNCOMMENT TO ENABLE THIS AXIS
-    #define K_RSENSE         0.075    // UNCOMMENT TO ENABLE THIS AXIS
-    #define K_CHAIN_POS     -1        // UNCOMMENT TO ENABLE THIS AXIS
-    // #define K_INTERPOLATE  true
+  #if LINEAR_AXES >= 6
+    #if AXIS_IS_TMC(K)                  // UNCOMMENT TO ENABLE THIS AXIS
+      #define K_CURRENT      800        // UNCOMMENT TO ENABLE THIS AXIS 
+      #define K_CURRENT_HOME K_CURRENT  // UNCOMMENT TO ENABLE THIS AXIS 
+      #define K_MICROSTEPS    16        // UNCOMMENT TO ENABLE THIS AXIS
+      #define K_RSENSE         0.075    // UNCOMMENT TO ENABLE THIS AXIS
+      #define K_CHAIN_POS     -1        // UNCOMMENT TO ENABLE THIS AXIS
+      // #define K_INTERPOLATE  true
+    #endif                              // UNCOMMENT TO ENABLE THIS AXIS
   #endif                              // UNCOMMENT TO ENABLE THIS AXIS
   #if AXIS_IS_TMC(E0)
     #define E0_CURRENT      800
@@ -3066,7 +3070,7 @@
    *
    * Comment *_STALL_SENSITIVITY to disable sensorless homing for that axis.
    */
-  #define SENSORLESS_HOMING // StallGuard capable drivers only
+  // #define SENSORLESS_HOMING // StallGuard capable drivers only
 
   #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
     // TMC2209: 0...255. TMC2130: -64...63
@@ -3101,7 +3105,7 @@
    * Beta feature!
    * Create a 50/50 square wave step pulse optimal for stepper drivers.
    */
-  //#define SQUARE_WAVE_STEPPING
+  #define SQUARE_WAVE_STEPPING
 
   /**
    * Enable M122 debugging command for TMC stepper drivers.
@@ -3393,7 +3397,7 @@
  * Add the M240 G-code to take a photo.
  * The photo can be triggered by a digital pin or a physical movement.
  */
-//#define PHOTO_GCODE
+// #define PHOTO_GCODE
 #if ENABLED(PHOTO_GCODE)
   // A position to move to (and raise Z) before taking the photo
   //#define PHOTO_POSITION { X_MAX_POS - 5, Y_MAX_POS, 0 }  // { xpos, ypos, zraise } (M240 X Y Z)
@@ -3685,8 +3689,8 @@
  * The current sensor feeds DC voltage (relative to the measured current) to an analog pin
  * The voltage sensor feeds DC voltage (relative to the measured voltage) to an analog pin
  */
-//#define POWER_MONITOR_CURRENT   // Monitor the system current
-//#define POWER_MONITOR_VOLTAGE   // Monitor the system voltage
+// #define POWER_MONITOR_CURRENT   // Monitor the system current
+// #define POWER_MONITOR_VOLTAGE   // Monitor the system voltage
 
 #if ENABLED(POWER_MONITOR_CURRENT)
   #define POWER_MONITOR_VOLTS_PER_AMP    0.05000  // Input voltage to the MCU analog pin per amp  - DO NOT apply more than ADC_VREF!
@@ -3714,7 +3718,7 @@
  * Enables G53 and G54-G59.3 commands to select coordinate systems
  * and G92.1 to reset the workspace to native machine space.
  */
-//#define CNC_COORDINATE_SYSTEMS
+#define CNC_COORDINATE_SYSTEMS
 
 /**
  * Auto-report fan speed with M123 S<seconds>
@@ -3730,7 +3734,7 @@
 /**
  * Auto-report position with M154 S<seconds>
  */
-//#define AUTO_REPORT_POSITION
+// #define AUTO_REPORT_POSITION
 
 /**
  * Include capabilities in M115 output
@@ -3787,7 +3791,7 @@
 // Extra options for the M114 "Current Position" report
 //#define M114_DETAIL         // Use 'M114` for details to check planner calculations
 #define M114_REALTIME       // Real current position based on forward kinematics
-//#define M114_LEGACY         // M114 used to synchronize on every call. Enable if needed.
+// #define M114_LEGACY         // M114 used to synchronize on every call. Enable if needed.
 
 //#define REPORT_FAN_CHANGE   // Report the new fan speed when changed by M106 (and others)
 
@@ -3845,7 +3849,7 @@
  * Add G-codes M810-M819 to define and run G-code macros.
  * Macros are not saved to EEPROM.
  */
-//#define GCODE_MACROS
+#define GCODE_MACROS
 #if ENABLED(GCODE_MACROS)
   #define GCODE_MACROS_SLOTS       5  // Up to 10 may be used
   #define GCODE_MACROS_SLOT_SIZE  50  // Maximum length of a single macro
@@ -3961,12 +3965,12 @@
  * Host Prompt Support enables Marlin to use the host for user prompts so
  * filament runout and other processes can be managed from the host side.
  */
-//#define HOST_ACTION_COMMANDS
+#define HOST_ACTION_COMMANDS
 #if ENABLED(HOST_ACTION_COMMANDS)
-  //#define HOST_PAUSE_M76
-  //#define HOST_PROMPT_SUPPORT
-  //#define HOST_START_MENU_ITEM      // Add a menu item that tells the host to start
-  //#define HOST_SHUTDOWN_MENU_ITEM   // Add a menu item that tells the host to shut down
+  #define HOST_PAUSE_M76
+  #define HOST_PROMPT_SUPPORT
+  #define HOST_START_MENU_ITEM      // Add a menu item that tells the host to start
+  #define HOST_SHUTDOWN_MENU_ITEM   // Add a menu item that tells the host to shut down
 #endif
 
 /**
@@ -3974,7 +3978,7 @@
  *
  * Implement M486 to allow Marlin to skip objects
  */
-//#define CANCEL_OBJECTS
+#define CANCEL_OBJECTS
 #if ENABLED(CANCEL_OBJECTS)
   #define CANCEL_OBJECTS_REPORTING // Emit the current object as a status message
 #endif
@@ -4104,10 +4108,10 @@
  * Specified pin has pullup and connecting to ground will instantly pause motion.
  * Potentially useful for emergency stop that allows being resumed.
  */
-// #define FREEZE_FEATURE
-// #if ENABLED(FREEZE_FEATURE)
-  // #define FREEZE_PIN PG12   // Override the default (KILL) pin here
-// #endif
+#define FREEZE_FEATURE
+#if ENABLED(FREEZE_FEATURE)
+  #define FREEZE_PIN PB7   // Override the default (KILL) pin here
+#endif
 
 /**
  * MAX7219 Debug Matrix
@@ -4149,7 +4153,7 @@
  * output a "Z_move_comp" string to enable synchronization with DLP projector exposure.
  * This feature allows you to use [[WaitForDoneMessage]] instead of M400 commands.
  */
-//#define NANODLP_Z_SYNC
+// #define NANODLP_Z_SYNC
 #if ENABLED(NANODLP_Z_SYNC)
   //#define NANODLP_ALL_AXIS  // Send a "Z_move_comp" report for any axis move (not just Z).
 #endif
@@ -4338,8 +4342,8 @@
 /**
  * Software Reset options
  */
-//#define SOFT_RESET_VIA_SERIAL         // 'KILL' and '^X' commands will soft-reset the controller
-//#define SOFT_RESET_ON_KILL            // Use a digital button to soft-reset the controller after KILL
+#define SOFT_RESET_VIA_SERIAL         // 'KILL' and '^X' commands will soft-reset the controller
+// #define SOFT_RESET_ON_KILL  PB7          // Use a digital button to soft-reset the controller after KILL
 
 // Report uncleaned reset reason from register r2 instead of MCUSR. Supported by Optiboot on AVR.
 //#define OPTIBOOT_RESET_REASON

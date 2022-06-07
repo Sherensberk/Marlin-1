@@ -833,12 +833,12 @@
 #define Y_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
 #define Z_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
 
-#define I_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.   // UNCOMMENT TO ENABLE THIS AXIS
-#define I_MAX_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.   // UNCOMMENT TO ENABLE THIS AXIS
-#define J_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.   // UNCOMMENT TO ENABLE THIS AXIS
-#define J_MAX_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.   // UNCOMMENT TO ENABLE THIS AXIS
-#define K_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.   // UNCOMMENT TO ENABLE THIS AXIS
-#define K_MAX_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.   // UNCOMMENT TO ENABLE THIS AXIS
+#define I_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.   // UNCOMMENT TO ENABLE THIS AXIS
+#define I_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.   // UNCOMMENT TO ENABLE THIS AXIS
+#define J_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.   // UNCOMMENT TO ENABLE THIS AXIS
+#define J_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.   // UNCOMMENT TO ENABLE THIS AXIS
+#define K_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.   // UNCOMMENT TO ENABLE THIS AXIS
+#define K_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.   // UNCOMMENT TO ENABLE THIS AXIS
 
 #define X_MAX_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
@@ -1414,7 +1414,7 @@
  */
 //#define Z_IDLE_HEIGHT Z_HOME_POS
 
-//#define Z_HOMING_HEIGHT  4      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
+#define Z_HOMING_HEIGHT  -1      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
                                   // Be sure to have this much clearance over your Z_MAX_POS to prevent grinding.
 
 //#define Z_AFTER_HOMING  10      // (mm) Height to move to after homing Z
@@ -1431,8 +1431,8 @@
 // @section machine
 
 // The size of the printable area
-#define X_BED_SIZE 1080
-#define Y_BED_SIZE 710
+#define X_BED_SIZE 1000
+#define Y_BED_SIZE 700
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -1785,9 +1785,9 @@
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-//#define MANUAL_X_HOME_POS 0
-//#define MANUAL_Y_HOME_POS 0
-//#define MANUAL_Z_HOME_POS 0
+#define MANUAL_X_HOME_POS 0
+#define MANUAL_Y_HOME_POS 0
+#define MANUAL_Z_HOME_POS 0
 //#define MANUAL_I_HOME_POS 0
 //#define MANUAL_J_HOME_POS 0
 //#define MANUAL_K_HOME_POS 0
@@ -2242,8 +2242,8 @@
 //
 // Add individual axis homing items (Home X, Home Y, and Home Z) to the LCD menu.
 //
-//#define INDIVIDUAL_AXIS_HOMING_MENU
-//#define INDIVIDUAL_AXIS_HOMING_SUBMENU
+// #define INDIVIDUAL_AXIS_HOMING_MENU
+// #define INDIVIDUAL_AXIS_HOMING_SUBMENU
 
 //
 // SPEAKER/BUZZER
@@ -2260,8 +2260,8 @@
 // Note: Test audio output with the G-Code:
 //  M300 S<frequency Hz> P<duration ms>
 //
-//#define LCD_FEEDBACK_FREQUENCY_DURATION_MS 2
-//#define LCD_FEEDBACK_FREQUENCY_HZ 5000
+// #define LCD_FEEDBACK_FREQUENCY_DURATION_MS 2
+// #define LCD_FEEDBACK_FREQUENCY_HZ 5000
 
 //=============================================================================
 //======================== LCD / Controller Selection =========================
@@ -2274,7 +2274,7 @@
 //
 // Note: Usually sold with a white PCB.
 //
-//#define REPRAP_DISCOUNT_SMART_CONTROLLER
+// #define REPRAP_DISCOUNT_SMART_CONTROLLER
 
 //
 // GT2560 (YHCB2004) LCD Display
