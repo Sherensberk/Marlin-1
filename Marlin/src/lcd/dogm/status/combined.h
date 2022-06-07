@@ -27,7 +27,7 @@
 
 #undef STATUS_HOTEND_ANIM
 #undef STATUS_BED_ANIM
-#define STATUS_HEATERS_XSPACE 24
+#define STATUS_HEATERS_XSPACE 1
 
 //
 // Status Screen Combined Heater bitmaps

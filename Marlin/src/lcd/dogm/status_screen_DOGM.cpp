@@ -199,8 +199,8 @@ FORCE_INLINE void _draw_centered_temp(const celsius_t temp, const uint8_t tx, co
   else {
     const char *str = i16tostr3rj(temp);
     const uint8_t len = str[0] != ' ' ? 3 : str[1] != ' ' ? 2 : 1;
-    lcd_put_u8str(tx - len * (INFO_FONT_WIDTH) / 2 + 1, ty, &str[3-len]);
-    lcd_put_wchar(LCD_STR_DEGREE[0]);
+    // lcd_put_u8str(tx - len * (INFO_FONT_WIDTH) / 2 + 1, ty, &str[3-len]);
+    // lcd_put_wchar(LCD_STR_DEGREE[0]);
   }
 }
 
